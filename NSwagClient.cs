@@ -9902,7 +9902,8 @@ namespace InvestmentTrackerApiClient
         [Newtonsoft.Json.JsonProperty("isFlagged", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool IsFlagged { get; set; }
     
-        [Newtonsoft.Json.JsonProperty("user", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        /// <summary>The user that performed the activity</summary>
+        [Newtonsoft.Json.JsonProperty("user", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public User User { get; set; }
     
         /// <summary>A way to meta tag for custom info</summary>
@@ -9917,6 +9918,7 @@ namespace InvestmentTrackerApiClient
         [Newtonsoft.Json.JsonProperty("owningEntityId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int OwningEntityId { get; set; }
     
+        /// <summary>The type of a the target of this activity</summary>
         [Newtonsoft.Json.JsonProperty("owningEntityType", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public EntityType OwningEntityType { get; set; }
     
@@ -9995,6 +9997,7 @@ namespace InvestmentTrackerApiClient
         [Newtonsoft.Json.JsonProperty("isFlagged", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool IsFlagged { get; set; }
     
+        /// <summary>Specific datatype of the custom entity type</summary>
         [Newtonsoft.Json.JsonProperty("dataType", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public EntityType DataType { get; set; }
     
@@ -10052,14 +10055,15 @@ namespace InvestmentTrackerApiClient
         [Newtonsoft.Json.JsonProperty("investmentID", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int InvestmentID { get; set; }
     
-        [Newtonsoft.Json.JsonProperty("investment", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [Newtonsoft.Json.JsonProperty("investment", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public Investment Investment { get; set; }
     
         /// <summary>InvestmentInfluenceFactorID</summary>
         [Newtonsoft.Json.JsonProperty("investmentInfluenceFactorID", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int InvestmentInfluenceFactorID { get; set; }
     
-        [Newtonsoft.Json.JsonProperty("investmentInfluenceFactor", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        /// <summary>InvestmentInfluenceFactor</summary>
+        [Newtonsoft.Json.JsonProperty("investmentInfluenceFactor", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public InvestmentInfluenceFactor InvestmentInfluenceFactor { get; set; }
     
     
@@ -10114,13 +10118,13 @@ namespace InvestmentTrackerApiClient
         [Newtonsoft.Json.JsonProperty("investmentID", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int InvestmentID { get; set; }
     
-        [Newtonsoft.Json.JsonProperty("investment", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [Newtonsoft.Json.JsonProperty("investment", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public Investment Investment { get; set; }
     
         [Newtonsoft.Json.JsonProperty("regionID", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int RegionID { get; set; }
     
-        [Newtonsoft.Json.JsonProperty("region", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [Newtonsoft.Json.JsonProperty("region", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public Region Region { get; set; }
     
     
@@ -10170,6 +10174,7 @@ namespace InvestmentTrackerApiClient
         [Newtonsoft.Json.JsonProperty("investmentIds", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Collections.Generic.ICollection<int> InvestmentIds { get; set; }
     
+        /// <summary>Type</summary>
         [Newtonsoft.Json.JsonProperty("type", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public RiskType Type { get; set; }
     
@@ -10186,13 +10191,13 @@ namespace InvestmentTrackerApiClient
         [Newtonsoft.Json.JsonProperty("investmentID", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int InvestmentID { get; set; }
     
-        [Newtonsoft.Json.JsonProperty("investment", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [Newtonsoft.Json.JsonProperty("investment", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public Investment Investment { get; set; }
     
         [Newtonsoft.Json.JsonProperty("investmentRiskID", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int InvestmentRiskID { get; set; }
     
-        [Newtonsoft.Json.JsonProperty("investmentRisk", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [Newtonsoft.Json.JsonProperty("investmentRisk", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public InvestmentRisk InvestmentRisk { get; set; }
     
     
@@ -10242,7 +10247,8 @@ namespace InvestmentTrackerApiClient
         [Newtonsoft.Json.JsonProperty("investments", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Collections.Generic.ICollection<InvestmentGroup_Investment> Investments { get; set; }
     
-        [Newtonsoft.Json.JsonProperty("parent", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        /// <summary>Parent Investment Group</summary>
+        [Newtonsoft.Json.JsonProperty("parent", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public InvestmentGroup Parent { get; set; }
     
         /// <summary>Child Investment Groups</summary>
@@ -10258,13 +10264,13 @@ namespace InvestmentTrackerApiClient
         [Newtonsoft.Json.JsonProperty("investmentID", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int InvestmentID { get; set; }
     
-        [Newtonsoft.Json.JsonProperty("investment", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [Newtonsoft.Json.JsonProperty("investment", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public Investment Investment { get; set; }
     
         [Newtonsoft.Json.JsonProperty("investmentGroupID", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int InvestmentGroupID { get; set; }
     
-        [Newtonsoft.Json.JsonProperty("investmentGroup", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [Newtonsoft.Json.JsonProperty("investmentGroup", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public InvestmentGroup InvestmentGroup { get; set; }
     
     
@@ -10429,14 +10435,15 @@ namespace InvestmentTrackerApiClient
         [Newtonsoft.Json.JsonProperty("investmentID", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int InvestmentID { get; set; }
     
-        [Newtonsoft.Json.JsonProperty("investment", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [Newtonsoft.Json.JsonProperty("investment", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public Investment Investment { get; set; }
     
         /// <summary>CustomEntityId</summary>
         [Newtonsoft.Json.JsonProperty("customEntityId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int CustomEntityId { get; set; }
     
-        [Newtonsoft.Json.JsonProperty("customEntity", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        /// <summary>CustomEntity</summary>
+        [Newtonsoft.Json.JsonProperty("customEntity", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public CustomEntity CustomEntity { get; set; }
     
     
@@ -10474,10 +10481,12 @@ namespace InvestmentTrackerApiClient
         [Newtonsoft.Json.JsonProperty("isFlagged", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool IsFlagged { get; set; }
     
-        [Newtonsoft.Json.JsonProperty("customEntityType", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        /// <summary>Type that this entity belongs to</summary>
+        [Newtonsoft.Json.JsonProperty("customEntityType", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public CustomEntityType CustomEntityType { get; set; }
     
-        [Newtonsoft.Json.JsonProperty("owningCustomEntity", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        /// <summary>The refered owning custom entity, if entity type = custom</summary>
+        [Newtonsoft.Json.JsonProperty("owningCustomEntity", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public CustomEntity OwningCustomEntity { get; set; }
     
         /// <summary>Entities that relate to this entity</summary>
@@ -10488,6 +10497,7 @@ namespace InvestmentTrackerApiClient
         [Newtonsoft.Json.JsonProperty("owningEntityId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int OwningEntityId { get; set; }
     
+        /// <summary>This allows this custom entity to be owned by a non-custom entity</summary>
         [Newtonsoft.Json.JsonProperty("owningEntityType", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public EntityType OwningEntityType { get; set; }
     
@@ -10541,6 +10551,7 @@ namespace InvestmentTrackerApiClient
         [Newtonsoft.Json.JsonProperty("owningEntityId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int OwningEntityId { get; set; }
     
+        /// <summary>Type of owning It</summary>
         [Newtonsoft.Json.JsonProperty("owningEntityType", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public EntityType OwningEntityType { get; set; }
     

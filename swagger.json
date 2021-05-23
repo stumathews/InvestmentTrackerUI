@@ -143,22 +143,46 @@
           "content": {
             "application/json-patch+json": {
               "schema": {
-                "$ref": "#/components/schemas/RecordedActivity"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/RecordedActivity"
+                  }
+                ],
+                "description": "Represents an activity that that has been performed and persisted",
+                "nullable": true
               }
             },
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/RecordedActivity"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/RecordedActivity"
+                  }
+                ],
+                "description": "Represents an activity that that has been performed and persisted",
+                "nullable": true
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/RecordedActivity"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/RecordedActivity"
+                  }
+                ],
+                "description": "Represents an activity that that has been performed and persisted",
+                "nullable": true
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/RecordedActivity"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/RecordedActivity"
+                  }
+                ],
+                "description": "Represents an activity that that has been performed and persisted",
+                "nullable": true
               }
             }
           }
@@ -334,22 +358,46 @@
           "content": {
             "application/json-patch+json": {
               "schema": {
-                "$ref": "#/components/schemas/RecordedActivity"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/RecordedActivity"
+                  }
+                ],
+                "description": "Represents an activity that that has been performed and persisted",
+                "nullable": true
               }
             },
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/RecordedActivity"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/RecordedActivity"
+                  }
+                ],
+                "description": "Represents an activity that that has been performed and persisted",
+                "nullable": true
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/RecordedActivity"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/RecordedActivity"
+                  }
+                ],
+                "description": "Represents an activity that that has been performed and persisted",
+                "nullable": true
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/RecordedActivity"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/RecordedActivity"
+                  }
+                ],
+                "description": "Represents an activity that that has been performed and persisted",
+                "nullable": true
               }
             }
           }
@@ -424,22 +472,46 @@
           "content": {
             "application/json-patch+json": {
               "schema": {
-                "$ref": "#/components/schemas/CustomEntity"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/CustomEntity"
+                  }
+                ],
+                "description": "the entity to create",
+                "nullable": true
               }
             },
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CustomEntity"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/CustomEntity"
+                  }
+                ],
+                "description": "the entity to create",
+                "nullable": true
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/CustomEntity"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/CustomEntity"
+                  }
+                ],
+                "description": "the entity to create",
+                "nullable": true
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/CustomEntity"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/CustomEntity"
+                  }
+                ],
+                "description": "the entity to create",
+                "nullable": true
               }
             }
           }
@@ -629,22 +701,46 @@
           "content": {
             "application/json-patch+json": {
               "schema": {
-                "$ref": "#/components/schemas/CustomEntity"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/CustomEntity"
+                  }
+                ],
+                "description": "Represents an custom entity that the user can define",
+                "nullable": true
               }
             },
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CustomEntity"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/CustomEntity"
+                  }
+                ],
+                "description": "Represents an custom entity that the user can define",
+                "nullable": true
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/CustomEntity"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/CustomEntity"
+                  }
+                ],
+                "description": "Represents an custom entity that the user can define",
+                "nullable": true
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/CustomEntity"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/CustomEntity"
+                  }
+                ],
+                "description": "Represents an custom entity that the user can define",
+                "nullable": true
               }
             }
           }
@@ -999,22 +1095,46 @@
           "content": {
             "application/json-patch+json": {
               "schema": {
-                "$ref": "#/components/schemas/CustomEntityType"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/CustomEntityType"
+                  }
+                ],
+                "description": "Types of user defined entities",
+                "nullable": true
               }
             },
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CustomEntityType"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/CustomEntityType"
+                  }
+                ],
+                "description": "Types of user defined entities",
+                "nullable": true
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/CustomEntityType"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/CustomEntityType"
+                  }
+                ],
+                "description": "Types of user defined entities",
+                "nullable": true
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/CustomEntityType"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/CustomEntityType"
+                  }
+                ],
+                "description": "Types of user defined entities",
+                "nullable": true
               }
             }
           }
@@ -1206,22 +1326,46 @@
           "content": {
             "application/json-patch+json": {
               "schema": {
-                "$ref": "#/components/schemas/CustomEntityType"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/CustomEntityType"
+                  }
+                ],
+                "description": "Types of user defined entities",
+                "nullable": true
               }
             },
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CustomEntityType"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/CustomEntityType"
+                  }
+                ],
+                "description": "Types of user defined entities",
+                "nullable": true
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/CustomEntityType"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/CustomEntityType"
+                  }
+                ],
+                "description": "Types of user defined entities",
+                "nullable": true
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/CustomEntityType"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/CustomEntityType"
+                  }
+                ],
+                "description": "Types of user defined entities",
+                "nullable": true
               }
             }
           }
@@ -1370,22 +1514,46 @@
           "content": {
             "application/json-patch+json": {
               "schema": {
-                "$ref": "#/components/schemas/InvestmentInfluenceFactor"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/InvestmentInfluenceFactor"
+                  }
+                ],
+                "description": "",
+                "nullable": true
               }
             },
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/InvestmentInfluenceFactor"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/InvestmentInfluenceFactor"
+                  }
+                ],
+                "description": "",
+                "nullable": true
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/InvestmentInfluenceFactor"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/InvestmentInfluenceFactor"
+                  }
+                ],
+                "description": "",
+                "nullable": true
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/InvestmentInfluenceFactor"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/InvestmentInfluenceFactor"
+                  }
+                ],
+                "description": "",
+                "nullable": true
               }
             }
           }
@@ -1577,22 +1745,46 @@
           "content": {
             "application/json-patch+json": {
               "schema": {
-                "$ref": "#/components/schemas/InvestmentInfluenceFactor"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/InvestmentInfluenceFactor"
+                  }
+                ],
+                "description": "",
+                "nullable": true
               }
             },
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/InvestmentInfluenceFactor"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/InvestmentInfluenceFactor"
+                  }
+                ],
+                "description": "",
+                "nullable": true
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/InvestmentInfluenceFactor"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/InvestmentInfluenceFactor"
+                  }
+                ],
+                "description": "",
+                "nullable": true
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/InvestmentInfluenceFactor"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/InvestmentInfluenceFactor"
+                  }
+                ],
+                "description": "",
+                "nullable": true
               }
             }
           }
@@ -1741,22 +1933,46 @@
           "content": {
             "application/json-patch+json": {
               "schema": {
-                "$ref": "#/components/schemas/InvestmentGroup"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/InvestmentGroup"
+                  }
+                ],
+                "description": "Investment group",
+                "nullable": true
               }
             },
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/InvestmentGroup"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/InvestmentGroup"
+                  }
+                ],
+                "description": "Investment group",
+                "nullable": true
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/InvestmentGroup"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/InvestmentGroup"
+                  }
+                ],
+                "description": "Investment group",
+                "nullable": true
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/InvestmentGroup"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/InvestmentGroup"
+                  }
+                ],
+                "description": "Investment group",
+                "nullable": true
               }
             }
           }
@@ -1948,22 +2164,46 @@
           "content": {
             "application/json-patch+json": {
               "schema": {
-                "$ref": "#/components/schemas/InvestmentGroup"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/InvestmentGroup"
+                  }
+                ],
+                "description": "Investment group",
+                "nullable": true
               }
             },
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/InvestmentGroup"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/InvestmentGroup"
+                  }
+                ],
+                "description": "Investment group",
+                "nullable": true
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/InvestmentGroup"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/InvestmentGroup"
+                  }
+                ],
+                "description": "Investment group",
+                "nullable": true
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/InvestmentGroup"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/InvestmentGroup"
+                  }
+                ],
+                "description": "Investment group",
+                "nullable": true
               }
             }
           }
@@ -2906,22 +3146,46 @@
           "content": {
             "application/json-patch+json": {
               "schema": {
-                "$ref": "#/components/schemas/Investment"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Investment"
+                  }
+                ],
+                "description": "Represents an investment",
+                "nullable": true
               }
             },
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Investment"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Investment"
+                  }
+                ],
+                "description": "Represents an investment",
+                "nullable": true
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Investment"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Investment"
+                  }
+                ],
+                "description": "Represents an investment",
+                "nullable": true
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Investment"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Investment"
+                  }
+                ],
+                "description": "Represents an investment",
+                "nullable": true
               }
             }
           }
@@ -3113,22 +3377,46 @@
           "content": {
             "application/json-patch+json": {
               "schema": {
-                "$ref": "#/components/schemas/Investment"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Investment"
+                  }
+                ],
+                "description": "Represents an investment",
+                "nullable": true
               }
             },
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Investment"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Investment"
+                  }
+                ],
+                "description": "Represents an investment",
+                "nullable": true
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Investment"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Investment"
+                  }
+                ],
+                "description": "Represents an investment",
+                "nullable": true
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Investment"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Investment"
+                  }
+                ],
+                "description": "Represents an investment",
+                "nullable": true
               }
             }
           }
@@ -3351,22 +3639,46 @@
           "content": {
             "application/json-patch+json": {
               "schema": {
-                "$ref": "#/components/schemas/InvestmentNote"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/InvestmentNote"
+                  }
+                ],
+                "description": "Simple text note for an entity",
+                "nullable": true
               }
             },
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/InvestmentNote"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/InvestmentNote"
+                  }
+                ],
+                "description": "Simple text note for an entity",
+                "nullable": true
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/InvestmentNote"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/InvestmentNote"
+                  }
+                ],
+                "description": "Simple text note for an entity",
+                "nullable": true
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/InvestmentNote"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/InvestmentNote"
+                  }
+                ],
+                "description": "Simple text note for an entity",
+                "nullable": true
               }
             }
           }
@@ -3558,22 +3870,46 @@
           "content": {
             "application/json-patch+json": {
               "schema": {
-                "$ref": "#/components/schemas/InvestmentNote"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/InvestmentNote"
+                  }
+                ],
+                "description": "Simple text note for an entity",
+                "nullable": true
               }
             },
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/InvestmentNote"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/InvestmentNote"
+                  }
+                ],
+                "description": "Simple text note for an entity",
+                "nullable": true
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/InvestmentNote"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/InvestmentNote"
+                  }
+                ],
+                "description": "Simple text note for an entity",
+                "nullable": true
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/InvestmentNote"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/InvestmentNote"
+                  }
+                ],
+                "description": "Simple text note for an entity",
+                "nullable": true
               }
             }
           }
@@ -3722,22 +4058,46 @@
           "content": {
             "application/json-patch+json": {
               "schema": {
-                "$ref": "#/components/schemas/Region"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Region"
+                  }
+                ],
+                "description": "An Investment region",
+                "nullable": true
               }
             },
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Region"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Region"
+                  }
+                ],
+                "description": "An Investment region",
+                "nullable": true
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Region"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Region"
+                  }
+                ],
+                "description": "An Investment region",
+                "nullable": true
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Region"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Region"
+                  }
+                ],
+                "description": "An Investment region",
+                "nullable": true
               }
             }
           }
@@ -3929,22 +4289,46 @@
           "content": {
             "application/json-patch+json": {
               "schema": {
-                "$ref": "#/components/schemas/Region"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Region"
+                  }
+                ],
+                "description": "An Investment region",
+                "nullable": true
               }
             },
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Region"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Region"
+                  }
+                ],
+                "description": "An Investment region",
+                "nullable": true
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Region"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Region"
+                  }
+                ],
+                "description": "An Investment region",
+                "nullable": true
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Region"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Region"
+                  }
+                ],
+                "description": "An Investment region",
+                "nullable": true
               }
             }
           }
@@ -4093,22 +4477,46 @@
           "content": {
             "application/json-patch+json": {
               "schema": {
-                "$ref": "#/components/schemas/InvestmentRisk"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/InvestmentRisk"
+                  }
+                ],
+                "description": "Investment Risk",
+                "nullable": true
               }
             },
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/InvestmentRisk"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/InvestmentRisk"
+                  }
+                ],
+                "description": "Investment Risk",
+                "nullable": true
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/InvestmentRisk"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/InvestmentRisk"
+                  }
+                ],
+                "description": "Investment Risk",
+                "nullable": true
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/InvestmentRisk"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/InvestmentRisk"
+                  }
+                ],
+                "description": "Investment Risk",
+                "nullable": true
               }
             }
           }
@@ -4300,22 +4708,46 @@
           "content": {
             "application/json-patch+json": {
               "schema": {
-                "$ref": "#/components/schemas/InvestmentRisk"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/InvestmentRisk"
+                  }
+                ],
+                "description": "Investment Risk",
+                "nullable": true
               }
             },
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/InvestmentRisk"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/InvestmentRisk"
+                  }
+                ],
+                "description": "Investment Risk",
+                "nullable": true
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/InvestmentRisk"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/InvestmentRisk"
+                  }
+                ],
+                "description": "Investment Risk",
+                "nullable": true
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/InvestmentRisk"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/InvestmentRisk"
+                  }
+                ],
+                "description": "Investment Risk",
+                "nullable": true
               }
             }
           }
@@ -4390,22 +4822,46 @@
           "content": {
             "application/json-patch+json": {
               "schema": {
-                "$ref": "#/components/schemas/SignupDetails"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/SignupDetails"
+                  }
+                ],
+                "description": "",
+                "nullable": true
               }
             },
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/SignupDetails"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/SignupDetails"
+                  }
+                ],
+                "description": "",
+                "nullable": true
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/SignupDetails"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/SignupDetails"
+                  }
+                ],
+                "description": "",
+                "nullable": true
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/SignupDetails"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/SignupDetails"
+                  }
+                ],
+                "description": "",
+                "nullable": true
               }
             }
           }
@@ -4428,22 +4884,46 @@
           "content": {
             "application/json-patch+json": {
               "schema": {
-                "$ref": "#/components/schemas/UserLoginInfo"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/UserLoginInfo"
+                  }
+                ],
+                "description": "login details",
+                "nullable": true
               }
             },
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UserLoginInfo"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/UserLoginInfo"
+                  }
+                ],
+                "description": "login details",
+                "nullable": true
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/UserLoginInfo"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/UserLoginInfo"
+                  }
+                ],
+                "description": "login details",
+                "nullable": true
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/UserLoginInfo"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/UserLoginInfo"
+                  }
+                ],
+                "description": "login details",
+                "nullable": true
               }
             }
           }
@@ -4547,22 +5027,46 @@
           "content": {
             "application/json-patch+json": {
               "schema": {
-                "$ref": "#/components/schemas/InvestmentTransaction"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/InvestmentTransaction"
+                  }
+                ],
+                "description": "Represents a transaction on an investment",
+                "nullable": true
               }
             },
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/InvestmentTransaction"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/InvestmentTransaction"
+                  }
+                ],
+                "description": "Represents a transaction on an investment",
+                "nullable": true
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/InvestmentTransaction"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/InvestmentTransaction"
+                  }
+                ],
+                "description": "Represents a transaction on an investment",
+                "nullable": true
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/InvestmentTransaction"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/InvestmentTransaction"
+                  }
+                ],
+                "description": "Represents a transaction on an investment",
+                "nullable": true
               }
             }
           }
@@ -4754,22 +5258,46 @@
           "content": {
             "application/json-patch+json": {
               "schema": {
-                "$ref": "#/components/schemas/InvestmentTransaction"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/InvestmentTransaction"
+                  }
+                ],
+                "description": "Represents a transaction on an investment",
+                "nullable": true
               }
             },
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/InvestmentTransaction"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/InvestmentTransaction"
+                  }
+                ],
+                "description": "Represents a transaction on an investment",
+                "nullable": true
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/InvestmentTransaction"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/InvestmentTransaction"
+                  }
+                ],
+                "description": "Represents a transaction on an investment",
+                "nullable": true
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/InvestmentTransaction"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/InvestmentTransaction"
+                  }
+                ],
+                "description": "Represents a transaction on an investment",
+                "nullable": true
               }
             }
           }
@@ -4963,7 +5491,13 @@
             "description": "Generic true/false marker for entity"
           },
           "user": {
-            "$ref": "#/components/schemas/User"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/User"
+              }
+            ],
+            "description": "The user that performed the activity",
+            "nullable": true
           },
           "tag": {
             "type": "string",
@@ -4981,7 +5515,12 @@
             "format": "int32"
           },
           "owningEntityType": {
-            "$ref": "#/components/schemas/EntityType"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EntityType"
+              }
+            ],
+            "description": "The type of a the target of this activity"
           }
         },
         "additionalProperties": false,
@@ -5004,7 +5543,12 @@
         "type": "object",
         "properties": {
           "operationType": {
-            "$ref": "#/components/schemas/OperationType"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/OperationType"
+              }
+            ],
+            "readOnly": true
           },
           "path": {
             "type": "string",
@@ -5062,7 +5606,12 @@
             "description": "Generic true/false marker for entity"
           },
           "dataType": {
-            "$ref": "#/components/schemas/EntityType"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EntityType"
+              }
+            ],
+            "description": "Specific datatype of the custom entity type"
           }
         },
         "additionalProperties": false,
@@ -5140,7 +5689,13 @@
             "format": "int32"
           },
           "investment": {
-            "$ref": "#/components/schemas/Investment"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Investment"
+              }
+            ],
+            "description": "",
+            "nullable": true
           },
           "investmentInfluenceFactorID": {
             "type": "integer",
@@ -5148,7 +5703,13 @@
             "format": "int32"
           },
           "investmentInfluenceFactor": {
-            "$ref": "#/components/schemas/InvestmentInfluenceFactor"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/InvestmentInfluenceFactor"
+              }
+            ],
+            "description": "InvestmentInfluenceFactor",
+            "nullable": true
           }
         },
         "additionalProperties": false,
@@ -5222,7 +5783,13 @@
             "format": "int32"
           },
           "investment": {
-            "$ref": "#/components/schemas/Investment"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Investment"
+              }
+            ],
+            "description": "",
+            "nullable": true
           },
           "regionID": {
             "type": "integer",
@@ -5230,7 +5797,13 @@
             "format": "int32"
           },
           "region": {
-            "$ref": "#/components/schemas/Region"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Region"
+              }
+            ],
+            "description": "",
+            "nullable": true
           }
         },
         "additionalProperties": false,
@@ -5292,7 +5865,12 @@
             "readOnly": true
           },
           "type": {
-            "$ref": "#/components/schemas/RiskType"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/RiskType"
+              }
+            ],
+            "description": "Type"
           },
           "investments": {
             "type": "array",
@@ -5315,7 +5893,13 @@
             "format": "int32"
           },
           "investment": {
-            "$ref": "#/components/schemas/Investment"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Investment"
+              }
+            ],
+            "description": "",
+            "nullable": true
           },
           "investmentRiskID": {
             "type": "integer",
@@ -5323,7 +5907,13 @@
             "format": "int32"
           },
           "investmentRisk": {
-            "$ref": "#/components/schemas/InvestmentRisk"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/InvestmentRisk"
+              }
+            ],
+            "description": "",
+            "nullable": true
           }
         },
         "additionalProperties": false,
@@ -5390,7 +5980,13 @@
             "nullable": true
           },
           "parent": {
-            "$ref": "#/components/schemas/InvestmentGroup"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/InvestmentGroup"
+              }
+            ],
+            "description": "Parent Investment Group",
+            "nullable": true
           },
           "children": {
             "type": "array",
@@ -5413,7 +6009,13 @@
             "format": "int32"
           },
           "investment": {
-            "$ref": "#/components/schemas/Investment"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Investment"
+              }
+            ],
+            "description": "",
+            "nullable": true
           },
           "investmentGroupID": {
             "type": "integer",
@@ -5421,7 +6023,13 @@
             "format": "int32"
           },
           "investmentGroup": {
-            "$ref": "#/components/schemas/InvestmentGroup"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/InvestmentGroup"
+              }
+            ],
+            "description": "",
+            "nullable": true
           }
         },
         "additionalProperties": false,
@@ -5649,7 +6257,13 @@
             "format": "int32"
           },
           "investment": {
-            "$ref": "#/components/schemas/Investment"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Investment"
+              }
+            ],
+            "description": "",
+            "nullable": true
           },
           "customEntityId": {
             "type": "integer",
@@ -5657,7 +6271,13 @@
             "format": "int32"
           },
           "customEntity": {
-            "$ref": "#/components/schemas/CustomEntity"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CustomEntity"
+              }
+            ],
+            "description": "CustomEntity",
+            "nullable": true
           }
         },
         "additionalProperties": false,
@@ -5701,10 +6321,22 @@
             "description": "Generic true/false marker for entity"
           },
           "customEntityType": {
-            "$ref": "#/components/schemas/CustomEntityType"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CustomEntityType"
+              }
+            ],
+            "description": "Type that this entity belongs to",
+            "nullable": true
           },
           "owningCustomEntity": {
-            "$ref": "#/components/schemas/CustomEntity"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CustomEntity"
+              }
+            ],
+            "description": "The refered owning custom entity, if entity type = custom",
+            "nullable": true
           },
           "associations": {
             "type": "array",
@@ -5720,7 +6352,12 @@
             "format": "int32"
           },
           "owningEntityType": {
-            "$ref": "#/components/schemas/EntityType"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EntityType"
+              }
+            ],
+            "description": "This allows this custom entity to be owned by a non-custom entity"
           },
           "investments": {
             "type": "array",
@@ -5796,7 +6433,12 @@
             "format": "int32"
           },
           "owningEntityType": {
-            "$ref": "#/components/schemas/EntityType"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EntityType"
+              }
+            ],
+            "description": "Type of owning It"
           }
         },
         "additionalProperties": false,
