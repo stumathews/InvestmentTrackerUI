@@ -12,23 +12,22 @@
     </UserControl.DataContext>
     <StackPanel Orientation="Horizontal">
         <StackPanel Orientation="Vertical">
-        <TextBlock HorizontalAlignment="Center"
-                   FontSize="14"
-                   Text="Investment:" />
-          <ScrollViewer VerticalScrollBarVisibility="Visible">  
-        <ListBox HorizontalAlignment="Stretch"
-                  Width="Auto"
-                  ItemsSource="{Binding Investments}">            
-            <ListBox.ItemTemplate>
-                <DataTemplate>                    
-                    <TextBlock Text="{Binding Name}"/>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-            </ListBox>
-              </ScrollViewer>
-            
+            <TextBlock FontSize="14"
+                       Text="Investment:"
+                       HorizontalAlignment="Center"/> 
+            <ScrollViewer HorizontalAlignment="Left">
+            <ListBox ItemsSource="{Binding Investments, Mode=OneWay}"
+                 
+                     MaxHeight="400"
+                     MaxWidth="400">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>                    
+                            <TextBlock Text="{Binding Name}"/>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>  
+                </ScrollViewer>
+            <Button>Test</Button>
         </StackPanel>
-        
-
     </StackPanel>
 </UserControl>
