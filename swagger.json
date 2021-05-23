@@ -1,0 +1,5874 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Core Investment Tracker API",
+    "description": "Investment tracker is a platform that allows you to track aspects that affect your investments",
+    "termsOfService": "http://www.stuartmathews.com",
+    "contact": {
+      "name": "Stuart Mathews",
+      "url": "https://twitter.com/stumathews",
+      "email": ""
+    },
+    "license": {
+      "name": "License information",
+      "url": "https://www.stuartmathews.com"
+    },
+    "version": "v1"
+  },
+  "paths": {
+    "/api/Activity/{owningEntityId}/{owningEntityType}": {
+      "get": {
+        "tags": [
+          "Activity"
+        ],
+        "summary": "Get Entity by ID",
+        "parameters": [
+          {
+            "name": "owningEntityId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "description": "",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "owningEntityType",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "description": "",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RecordedActivity"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Activity/{owningEntityId}/{owningEntityType}/{id}": {
+      "delete": {
+        "tags": [
+          "Activity"
+        ],
+        "summary": "Deletes and Entity",
+        "parameters": [
+          {
+            "name": "owningEntityId",
+            "in": "path",
+            "description": "The id of the type you want the entity for",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "description": "The id of the type you want the entity for",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "owningEntityType",
+            "in": "path",
+            "description": "The type of the owning entity",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "description": "The type of the owning entity",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The id of the entity to delete",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "description": "The id of the entity to delete",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Activity": {
+      "get": {
+        "tags": [
+          "Activity"
+        ],
+        "summary": "Get all entities",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RecordedActivity"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Activity"
+        ],
+        "summary": "Create a entity",
+        "requestBody": {
+          "description": "the entity to create",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/RecordedActivity"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RecordedActivity"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RecordedActivity"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/RecordedActivity"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "201": {
+            "description": "Returns the newly-created item"
+          },
+          "400": {
+            "description": "If the item is null"
+          }
+        }
+      }
+    },
+    "/api/Activity/WithoutChildren": {
+      "get": {
+        "tags": [
+          "Activity"
+        ],
+        "summary": "Gets all entities but not their children",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RecordedActivity"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Activity/{id}": {
+      "get": {
+        "tags": [
+          "Activity"
+        ],
+        "summary": "Get Entity by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "description": "",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Activity"
+        ],
+        "summary": "Updates an entity partially",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id of entity to patch",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "the patched object",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Operation"
+                },
+                "nullable": true
+              }
+            },
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Operation"
+                },
+                "nullable": true
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Operation"
+                },
+                "nullable": true
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Operation"
+                },
+                "nullable": true
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Activity"
+        ],
+        "summary": "Deletes and Entity",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The id of the entity to delete",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "description": "The id of the entity to delete",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Activity"
+        ],
+        "summary": "Replaces and existing Entity.\r\nNote this is not for partial updates, for that use PATCH. This is used for replacing the entire entity.\r\nAt the moment it is not possible to replace everything on the existing generic entity with that on the new one and\r\nsometimes we dont want to: we dont want to replace the ID property for example, but we might want to replace\r\ncollections in the orignal item with the new collections in the new item, but this is currently not possible in the\r\nimplemantation. It just replaces simple members.\r\n** So if you want to do it propery, override this method in the controller for the type you want to implementa replacement\r\nroutine for.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id of the entity to update",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "the contents of the entity to change",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/RecordedActivity"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RecordedActivity"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RecordedActivity"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/RecordedActivity"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Activity/import": {
+      "post": {
+        "tags": [
+          "Activity"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/RecordedActivity"
+                },
+                "nullable": true
+              }
+            },
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/RecordedActivity"
+                },
+                "nullable": true
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/RecordedActivity"
+                },
+                "nullable": true
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/RecordedActivity"
+                },
+                "nullable": true
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/CustomEntity": {
+      "post": {
+        "tags": [
+          "CustomEntity"
+        ],
+        "summary": "Create a custom entity and if there is an associated custom entity type, looks it up and asosciates it with it,\r\notherwise the type is set to null",
+        "requestBody": {
+          "description": "the entity to create",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CustomEntity"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CustomEntity"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CustomEntity"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CustomEntity"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "201": {
+            "description": "Returns the newly-created item"
+          },
+          "400": {
+            "description": "If the item is null"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "CustomEntity"
+        ],
+        "summary": "Get all entities",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CustomEntity"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CustomEntity"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CustomEntity"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/CustomEntity/{id}": {
+      "delete": {
+        "tags": [
+          "CustomEntity"
+        ],
+        "summary": "Deletes and Entity",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The id of the entity to delete",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "description": "The id of the entity to delete",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "CustomEntity"
+        ],
+        "summary": "Get Entity by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "description": "",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "CustomEntity"
+        ],
+        "summary": "Updates an entity partially",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id of entity to patch",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "the patched object",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Operation"
+                },
+                "nullable": true
+              }
+            },
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Operation"
+                },
+                "nullable": true
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Operation"
+                },
+                "nullable": true
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Operation"
+                },
+                "nullable": true
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "CustomEntity"
+        ],
+        "summary": "Replaces and existing Entity.\r\nNote this is not for partial updates, for that use PATCH. This is used for replacing the entire entity.\r\nAt the moment it is not possible to replace everything on the existing generic entity with that on the new one and\r\nsometimes we dont want to: we dont want to replace the ID property for example, but we might want to replace\r\ncollections in the orignal item with the new collections in the new item, but this is currently not possible in the\r\nimplemantation. It just replaces simple members.\r\n** So if you want to do it propery, override this method in the controller for the type you want to implementa replacement\r\nroutine for.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id of the entity to update",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "the contents of the entity to change",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CustomEntity"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CustomEntity"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CustomEntity"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CustomEntity"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/CustomEntity/ByType/{type}/{id}": {
+      "get": {
+        "tags": [
+          "CustomEntity"
+        ],
+        "summary": "Gets all the custom entities for a particular type",
+        "parameters": [
+          {
+            "name": "type",
+            "in": "path",
+            "description": "the type of entities to fetch",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "the type of entities to fetch",
+              "nullable": true
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "owning entity type",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "description": "owning entity type",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CustomEntity"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CustomEntity"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CustomEntity"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/CustomEntity/ByType/{type}": {
+      "get": {
+        "tags": [
+          "CustomEntity"
+        ],
+        "summary": "Gets all the custom entities for a particular type",
+        "parameters": [
+          {
+            "name": "type",
+            "in": "path",
+            "description": "the type of entities to fetch",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "the type of entities to fetch",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CustomEntity"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CustomEntity"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CustomEntity"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/CustomEntity/GenerateEntityInvestmentsGraphFor/{entityId}": {
+      "get": {
+        "tags": [
+          "CustomEntity"
+        ],
+        "summary": "Generically generates a series of datapoints representing for all or one of the entitiy types.\r\nThis includes the linking of it to other entity types by joining up all the resulting entities by common investments",
+        "parameters": [
+          {
+            "name": "entityId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/CustomEntity/GenerateSharedInvestmentsGraphDataForAll": {
+      "get": {
+        "tags": [
+          "CustomEntity"
+        ],
+        "summary": "Generically generates a series of datapoints representing for all or one of the entitiy types.\r\nThis includes the linking of it to other entity types by joining up all the resulting entities by common investments",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/CustomEntity/WithoutChildren": {
+      "get": {
+        "tags": [
+          "CustomEntity"
+        ],
+        "summary": "Gets all entities but not their children",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CustomEntity"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CustomEntity"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CustomEntity"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/CustomEntity/import": {
+      "post": {
+        "tags": [
+          "CustomEntity"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/CustomEntity"
+                },
+                "nullable": true
+              }
+            },
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/CustomEntity"
+                },
+                "nullable": true
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/CustomEntity"
+                },
+                "nullable": true
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/CustomEntity"
+                },
+                "nullable": true
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/CustomEntityType/ByOwningId/{owningId}": {
+      "get": {
+        "tags": [
+          "CustomEntityType"
+        ],
+        "summary": "Gets the custom entity types that have entities of the type for this owning entity",
+        "parameters": [
+          {
+            "name": "owningId",
+            "in": "path",
+            "description": "owning entity",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "description": "owning entity",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CustomEntityType"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CustomEntityType"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CustomEntityType"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/CustomEntityType": {
+      "get": {
+        "tags": [
+          "CustomEntityType"
+        ],
+        "summary": "Get all entities",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CustomEntityType"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CustomEntityType"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CustomEntityType"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "CustomEntityType"
+        ],
+        "summary": "Create a entity",
+        "requestBody": {
+          "description": "the entity to create",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CustomEntityType"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CustomEntityType"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CustomEntityType"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CustomEntityType"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "201": {
+            "description": "Returns the newly-created item"
+          },
+          "400": {
+            "description": "If the item is null"
+          }
+        }
+      }
+    },
+    "/api/CustomEntityType/WithoutChildren": {
+      "get": {
+        "tags": [
+          "CustomEntityType"
+        ],
+        "summary": "Gets all entities but not their children",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CustomEntityType"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CustomEntityType"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CustomEntityType"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/CustomEntityType/{id}": {
+      "get": {
+        "tags": [
+          "CustomEntityType"
+        ],
+        "summary": "Get Entity by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "description": "",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "CustomEntityType"
+        ],
+        "summary": "Updates an entity partially",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id of entity to patch",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "the patched object",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Operation"
+                },
+                "nullable": true
+              }
+            },
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Operation"
+                },
+                "nullable": true
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Operation"
+                },
+                "nullable": true
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Operation"
+                },
+                "nullable": true
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "CustomEntityType"
+        ],
+        "summary": "Deletes and Entity",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The id of the entity to delete",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "description": "The id of the entity to delete",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "CustomEntityType"
+        ],
+        "summary": "Replaces and existing Entity.\r\nNote this is not for partial updates, for that use PATCH. This is used for replacing the entire entity.\r\nAt the moment it is not possible to replace everything on the existing generic entity with that on the new one and\r\nsometimes we dont want to: we dont want to replace the ID property for example, but we might want to replace\r\ncollections in the orignal item with the new collections in the new item, but this is currently not possible in the\r\nimplemantation. It just replaces simple members.\r\n** So if you want to do it propery, override this method in the controller for the type you want to implementa replacement\r\nroutine for.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id of the entity to update",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "the contents of the entity to change",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CustomEntityType"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CustomEntityType"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CustomEntityType"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CustomEntityType"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/CustomEntityType/import": {
+      "post": {
+        "tags": [
+          "CustomEntityType"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/CustomEntityType"
+                },
+                "nullable": true
+              }
+            },
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/CustomEntityType"
+                },
+                "nullable": true
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/CustomEntityType"
+                },
+                "nullable": true
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/CustomEntityType"
+                },
+                "nullable": true
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Factor/GenerateEntityInvestmentsGraphFor/{entityId}": {
+      "get": {
+        "tags": [
+          "Factor"
+        ],
+        "summary": "Generically generates a series of datapoints representing for all or one of the entitiy types.\r\nThis includes the linking of it to other entity types by joining up all the resulting entities by common investments",
+        "parameters": [
+          {
+            "name": "entityId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Factor/GenerateSharedInvestmentsGraphDataForAll": {
+      "get": {
+        "tags": [
+          "Factor"
+        ],
+        "summary": "Generically generates a series of datapoints representing for all or one of the entitiy types.\r\nThis includes the linking of it to other entity types by joining up all the resulting entities by common investments",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Factor": {
+      "get": {
+        "tags": [
+          "Factor"
+        ],
+        "summary": "Get all entities",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/InvestmentInfluenceFactor"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/InvestmentInfluenceFactor"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/InvestmentInfluenceFactor"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Factor"
+        ],
+        "summary": "Create a entity",
+        "requestBody": {
+          "description": "the entity to create",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/InvestmentInfluenceFactor"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InvestmentInfluenceFactor"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InvestmentInfluenceFactor"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/InvestmentInfluenceFactor"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "201": {
+            "description": "Returns the newly-created item"
+          },
+          "400": {
+            "description": "If the item is null"
+          }
+        }
+      }
+    },
+    "/api/Factor/WithoutChildren": {
+      "get": {
+        "tags": [
+          "Factor"
+        ],
+        "summary": "Gets all entities but not their children",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/InvestmentInfluenceFactor"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/InvestmentInfluenceFactor"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/InvestmentInfluenceFactor"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Factor/{id}": {
+      "get": {
+        "tags": [
+          "Factor"
+        ],
+        "summary": "Get Entity by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "description": "",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Factor"
+        ],
+        "summary": "Updates an entity partially",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id of entity to patch",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "the patched object",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Operation"
+                },
+                "nullable": true
+              }
+            },
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Operation"
+                },
+                "nullable": true
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Operation"
+                },
+                "nullable": true
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Operation"
+                },
+                "nullable": true
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Factor"
+        ],
+        "summary": "Deletes and Entity",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The id of the entity to delete",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "description": "The id of the entity to delete",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Factor"
+        ],
+        "summary": "Replaces and existing Entity.\r\nNote this is not for partial updates, for that use PATCH. This is used for replacing the entire entity.\r\nAt the moment it is not possible to replace everything on the existing generic entity with that on the new one and\r\nsometimes we dont want to: we dont want to replace the ID property for example, but we might want to replace\r\ncollections in the orignal item with the new collections in the new item, but this is currently not possible in the\r\nimplemantation. It just replaces simple members.\r\n** So if you want to do it propery, override this method in the controller for the type you want to implementa replacement\r\nroutine for.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id of the entity to update",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "the contents of the entity to change",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/InvestmentInfluenceFactor"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InvestmentInfluenceFactor"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InvestmentInfluenceFactor"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/InvestmentInfluenceFactor"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Factor/import": {
+      "post": {
+        "tags": [
+          "Factor"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/InvestmentInfluenceFactor"
+                },
+                "nullable": true
+              }
+            },
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/InvestmentInfluenceFactor"
+                },
+                "nullable": true
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/InvestmentInfluenceFactor"
+                },
+                "nullable": true
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/InvestmentInfluenceFactor"
+                },
+                "nullable": true
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Group/GenerateEntityInvestmentsGraphFor/{entityId}": {
+      "get": {
+        "tags": [
+          "Group"
+        ],
+        "summary": "Generically generates a series of datapoints representing for all or one of the entitiy types.\r\nThis includes the linking of it to other entity types by joining up all the resulting entities by common investments",
+        "parameters": [
+          {
+            "name": "entityId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Group/GenerateSharedInvestmentsGraphDataForAll": {
+      "get": {
+        "tags": [
+          "Group"
+        ],
+        "summary": "Generically generates a series of datapoints representing for all or one of the entitiy types.\r\nThis includes the linking of it to other entity types by joining up all the resulting entities by common investments",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Group": {
+      "get": {
+        "tags": [
+          "Group"
+        ],
+        "summary": "Get all entities",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/InvestmentGroup"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/InvestmentGroup"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/InvestmentGroup"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Group"
+        ],
+        "summary": "Create a entity",
+        "requestBody": {
+          "description": "the entity to create",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/InvestmentGroup"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InvestmentGroup"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InvestmentGroup"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/InvestmentGroup"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "201": {
+            "description": "Returns the newly-created item"
+          },
+          "400": {
+            "description": "If the item is null"
+          }
+        }
+      }
+    },
+    "/api/Group/WithoutChildren": {
+      "get": {
+        "tags": [
+          "Group"
+        ],
+        "summary": "Gets all entities but not their children",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/InvestmentGroup"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/InvestmentGroup"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/InvestmentGroup"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Group/{id}": {
+      "get": {
+        "tags": [
+          "Group"
+        ],
+        "summary": "Get Entity by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "description": "",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Group"
+        ],
+        "summary": "Updates an entity partially",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id of entity to patch",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "the patched object",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Operation"
+                },
+                "nullable": true
+              }
+            },
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Operation"
+                },
+                "nullable": true
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Operation"
+                },
+                "nullable": true
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Operation"
+                },
+                "nullable": true
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Group"
+        ],
+        "summary": "Deletes and Entity",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The id of the entity to delete",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "description": "The id of the entity to delete",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Group"
+        ],
+        "summary": "Replaces and existing Entity.\r\nNote this is not for partial updates, for that use PATCH. This is used for replacing the entire entity.\r\nAt the moment it is not possible to replace everything on the existing generic entity with that on the new one and\r\nsometimes we dont want to: we dont want to replace the ID property for example, but we might want to replace\r\ncollections in the orignal item with the new collections in the new item, but this is currently not possible in the\r\nimplemantation. It just replaces simple members.\r\n** So if you want to do it propery, override this method in the controller for the type you want to implementa replacement\r\nroutine for.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id of the entity to update",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "the contents of the entity to change",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/InvestmentGroup"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InvestmentGroup"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InvestmentGroup"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/InvestmentGroup"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Group/import": {
+      "post": {
+        "tags": [
+          "Group"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/InvestmentGroup"
+                },
+                "nullable": true
+              }
+            },
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/InvestmentGroup"
+                },
+                "nullable": true
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/InvestmentGroup"
+                },
+                "nullable": true
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/InvestmentGroup"
+                },
+                "nullable": true
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Investment/ByRisk/{id}": {
+      "get": {
+        "tags": [
+          "Investment"
+        ],
+        "summary": "Get investments By Risk",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Risk ID",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "description": "Risk ID",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Investment/ByFactor/{id}": {
+      "get": {
+        "tags": [
+          "Investment"
+        ],
+        "summary": "Get investments by Factor",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Factor Id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "description": "Factor Id",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Investment/ByGroup/{id}": {
+      "get": {
+        "tags": [
+          "Investment"
+        ],
+        "summary": "Get investments by group",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "group id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "description": "group id",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Investment/ByRegion/{id}": {
+      "get": {
+        "tags": [
+          "Investment"
+        ],
+        "summary": "Gets investments by region",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "region id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "description": "region id",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Investment/DissassociateRisk/{riskId}/{investmentId}": {
+      "post": {
+        "tags": [
+          "Investment"
+        ],
+        "summary": "Dissosicate a risk with an investment",
+        "parameters": [
+          {
+            "name": "riskId",
+            "in": "path",
+            "description": "risk to dissasociate",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "description": "risk to dissasociate",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "investmentId",
+            "in": "path",
+            "description": "investment to dissasociate risk from",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "description": "investment to dissasociate risk from",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Investment/DissassociateCustomEntity/{customEntityId}/{investmentId}": {
+      "post": {
+        "tags": [
+          "Investment"
+        ],
+        "summary": "Dissosicate a custom entity with an investment",
+        "parameters": [
+          {
+            "name": "customEntityId",
+            "in": "path",
+            "description": "custom entity to dissasociate",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "description": "custom entity to dissasociate",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "investmentId",
+            "in": "path",
+            "description": "investment to dissasociate risk from",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "description": "investment to dissasociate risk from",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Investment/DissassociateFactor/{factorId}/{investmentId}": {
+      "post": {
+        "tags": [
+          "Investment"
+        ],
+        "summary": "Dissociate a factor with an investment",
+        "parameters": [
+          {
+            "name": "factorId",
+            "in": "path",
+            "description": "factor id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "description": "factor id",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "investmentId",
+            "in": "path",
+            "description": "investment id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "description": "investment id",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Investment/DissassociateGroup/{groupId}/{investmentId}": {
+      "post": {
+        "tags": [
+          "Investment"
+        ],
+        "summary": "Dissociate a group from a investment",
+        "parameters": [
+          {
+            "name": "groupId",
+            "in": "path",
+            "description": "group to dissasoocate",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "description": "group to dissasoocate",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "investmentId",
+            "in": "path",
+            "description": "investment",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "description": "investment",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Investment/DissassociateRegion/{regionId}/{investmentId}": {
+      "post": {
+        "tags": [
+          "Investment"
+        ],
+        "summary": "Dissasociates the region from an investment",
+        "parameters": [
+          {
+            "name": "regionId",
+            "in": "path",
+            "description": "region to dissasociate",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "description": "region to dissasociate",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "investmentId",
+            "in": "path",
+            "description": "the investment",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "description": "the investment",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Investment/AssociateRisks/{id}": {
+      "post": {
+        "tags": [
+          "Investment"
+        ],
+        "summary": "Associates multiple risks with an investment",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "investment",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "description": "investment",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "list of risk ids",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "description": "list of risk ids",
+                "nullable": true
+              }
+            },
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "description": "list of risk ids",
+                "nullable": true
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "description": "list of risk ids",
+                "nullable": true
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "description": "list of risk ids",
+                "nullable": true
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Investment/AssociateCustomEntities/{id}": {
+      "post": {
+        "tags": [
+          "Investment"
+        ],
+        "summary": "Associate custom entity with investments",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "description": "",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "description": "",
+                "nullable": true
+              }
+            },
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "description": "",
+                "nullable": true
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "description": "",
+                "nullable": true
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "description": "",
+                "nullable": true
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Investment/AssociateFactors/{id}": {
+      "post": {
+        "tags": [
+          "Investment"
+        ],
+        "summary": "Associates factors(as checkmodels) with an investment",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "investment",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "description": "investment",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "description": "",
+                "nullable": true
+              }
+            },
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "description": "",
+                "nullable": true
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "description": "",
+                "nullable": true
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "description": "",
+                "nullable": true
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Investment/AssociateGroups/{id}": {
+      "post": {
+        "tags": [
+          "Investment"
+        ],
+        "summary": "Associate a groups with an investment",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "investment",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "description": "investment",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "description": "",
+                "nullable": true
+              }
+            },
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "description": "",
+                "nullable": true
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "description": "",
+                "nullable": true
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "description": "",
+                "nullable": true
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Investment/AssociateRegions/{id}": {
+      "post": {
+        "tags": [
+          "Investment"
+        ],
+        "summary": "Associate regions with an investment",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "investment",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "description": "investment",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "description": "",
+                "nullable": true
+              }
+            },
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "description": "",
+                "nullable": true
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "description": "",
+                "nullable": true
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "description": "",
+                "nullable": true
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Investment/RisksGraph/{id}": {
+      "get": {
+        "tags": [
+          "Investment"
+        ],
+        "summary": "Generates graph data all risks given associated with particular investment",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The investment Id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "description": "The investment Id",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Investment/CustomEntitiesGraph/{id}": {
+      "get": {
+        "tags": [
+          "Investment"
+        ],
+        "summary": "Generates graph data all custom entities given associated with particular investment",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "description": "",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Investment/FactorsGraph/{id}": {
+      "get": {
+        "tags": [
+          "Investment"
+        ],
+        "summary": "Generates graph data with all factors associated with particular investment",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Investment Id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "description": "Investment Id",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Investment/GroupsGraph/{id}": {
+      "get": {
+        "tags": [
+          "Investment"
+        ],
+        "summary": "Generates graph data with all groups associated with particular investment",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "investment ID",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "description": "investment ID",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Investment/RegionsGraph/{id}": {
+      "get": {
+        "tags": [
+          "Investment"
+        ],
+        "summary": "Generates graph data with all regions associated with particular investment",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "investment id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "description": "investment id",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Investment/GenerateEntityInvestmentsGraphFor/{entityId}": {
+      "get": {
+        "tags": [
+          "Investment"
+        ],
+        "summary": "Generically generates a series of datapoints representing for all or one of the entitiy types.\r\nThis includes the linking of it to other entity types by joining up all the resulting entities by common investments",
+        "parameters": [
+          {
+            "name": "entityId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Investment/GenerateSharedInvestmentsGraphDataForAll": {
+      "get": {
+        "tags": [
+          "Investment"
+        ],
+        "summary": "Generically generates a series of datapoints representing for all or one of the entitiy types.\r\nThis includes the linking of it to other entity types by joining up all the resulting entities by common investments",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Investment": {
+      "get": {
+        "tags": [
+          "Investment"
+        ],
+        "summary": "Get all entities",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Investment"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Investment"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Investment"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Investment"
+        ],
+        "summary": "Create a entity",
+        "requestBody": {
+          "description": "the entity to create",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Investment"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Investment"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Investment"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Investment"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "201": {
+            "description": "Returns the newly-created item"
+          },
+          "400": {
+            "description": "If the item is null"
+          }
+        }
+      }
+    },
+    "/api/Investment/WithoutChildren": {
+      "get": {
+        "tags": [
+          "Investment"
+        ],
+        "summary": "Gets all entities but not their children",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Investment"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Investment"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Investment"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Investment/{id}": {
+      "get": {
+        "tags": [
+          "Investment"
+        ],
+        "summary": "Get Entity by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "description": "",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Investment"
+        ],
+        "summary": "Updates an entity partially",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id of entity to patch",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "the patched object",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Operation"
+                },
+                "nullable": true
+              }
+            },
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Operation"
+                },
+                "nullable": true
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Operation"
+                },
+                "nullable": true
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Operation"
+                },
+                "nullable": true
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Investment"
+        ],
+        "summary": "Deletes and Entity",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The id of the entity to delete",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "description": "The id of the entity to delete",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Investment"
+        ],
+        "summary": "Replaces and existing Entity.\r\nNote this is not for partial updates, for that use PATCH. This is used for replacing the entire entity.\r\nAt the moment it is not possible to replace everything on the existing generic entity with that on the new one and\r\nsometimes we dont want to: we dont want to replace the ID property for example, but we might want to replace\r\ncollections in the orignal item with the new collections in the new item, but this is currently not possible in the\r\nimplemantation. It just replaces simple members.\r\n** So if you want to do it propery, override this method in the controller for the type you want to implementa replacement\r\nroutine for.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id of the entity to update",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "the contents of the entity to change",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Investment"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Investment"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Investment"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Investment"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Investment/import": {
+      "post": {
+        "tags": [
+          "Investment"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Investment"
+                },
+                "nullable": true
+              }
+            },
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Investment"
+                },
+                "nullable": true
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Investment"
+                },
+                "nullable": true
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Investment"
+                },
+                "nullable": true
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Notes/{owningEntityId}/{owningEntityType}": {
+      "get": {
+        "tags": [
+          "Notes"
+        ],
+        "summary": "Get Entity by ID",
+        "parameters": [
+          {
+            "name": "owningEntityId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "description": "",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "owningEntityType",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "description": "",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/InvestmentNote"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/InvestmentNote"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/InvestmentNote"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Notes/{owningEntityId}/{owningEntityType}/{id}": {
+      "delete": {
+        "tags": [
+          "Notes"
+        ],
+        "summary": "Deletes and Entity",
+        "parameters": [
+          {
+            "name": "owningEntityId",
+            "in": "path",
+            "description": "The id of the type you want the entity for",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "description": "The id of the type you want the entity for",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "owningEntityType",
+            "in": "path",
+            "description": "The type of the owning entity",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "description": "The type of the owning entity",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The id of the entity to delete",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "description": "The id of the entity to delete",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Notes": {
+      "get": {
+        "tags": [
+          "Notes"
+        ],
+        "summary": "Get all entities",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/InvestmentNote"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/InvestmentNote"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/InvestmentNote"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Notes"
+        ],
+        "summary": "Create a entity",
+        "requestBody": {
+          "description": "the entity to create",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/InvestmentNote"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InvestmentNote"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InvestmentNote"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/InvestmentNote"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "201": {
+            "description": "Returns the newly-created item"
+          },
+          "400": {
+            "description": "If the item is null"
+          }
+        }
+      }
+    },
+    "/api/Notes/WithoutChildren": {
+      "get": {
+        "tags": [
+          "Notes"
+        ],
+        "summary": "Gets all entities but not their children",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/InvestmentNote"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/InvestmentNote"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/InvestmentNote"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Notes/{id}": {
+      "get": {
+        "tags": [
+          "Notes"
+        ],
+        "summary": "Get Entity by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "description": "",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Notes"
+        ],
+        "summary": "Updates an entity partially",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id of entity to patch",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "the patched object",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Operation"
+                },
+                "nullable": true
+              }
+            },
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Operation"
+                },
+                "nullable": true
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Operation"
+                },
+                "nullable": true
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Operation"
+                },
+                "nullable": true
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Notes"
+        ],
+        "summary": "Deletes and Entity",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The id of the entity to delete",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "description": "The id of the entity to delete",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Notes"
+        ],
+        "summary": "Replaces and existing Entity.\r\nNote this is not for partial updates, for that use PATCH. This is used for replacing the entire entity.\r\nAt the moment it is not possible to replace everything on the existing generic entity with that on the new one and\r\nsometimes we dont want to: we dont want to replace the ID property for example, but we might want to replace\r\ncollections in the orignal item with the new collections in the new item, but this is currently not possible in the\r\nimplemantation. It just replaces simple members.\r\n** So if you want to do it propery, override this method in the controller for the type you want to implementa replacement\r\nroutine for.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id of the entity to update",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "the contents of the entity to change",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/InvestmentNote"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InvestmentNote"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InvestmentNote"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/InvestmentNote"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Notes/import": {
+      "post": {
+        "tags": [
+          "Notes"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/InvestmentNote"
+                },
+                "nullable": true
+              }
+            },
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/InvestmentNote"
+                },
+                "nullable": true
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/InvestmentNote"
+                },
+                "nullable": true
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/InvestmentNote"
+                },
+                "nullable": true
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Region/GenerateEntityInvestmentsGraphFor/{entityId}": {
+      "get": {
+        "tags": [
+          "Region"
+        ],
+        "summary": "Generically generates a series of datapoints representing for all or one of the entitiy types.\r\nThis includes the linking of it to other entity types by joining up all the resulting entities by common investments",
+        "parameters": [
+          {
+            "name": "entityId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Region/GenerateSharedInvestmentsGraphDataForAll": {
+      "get": {
+        "tags": [
+          "Region"
+        ],
+        "summary": "Generically generates a series of datapoints representing for all or one of the entitiy types.\r\nThis includes the linking of it to other entity types by joining up all the resulting entities by common investments",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Region": {
+      "get": {
+        "tags": [
+          "Region"
+        ],
+        "summary": "Get all entities",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Region"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Region"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Region"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Region"
+        ],
+        "summary": "Create a entity",
+        "requestBody": {
+          "description": "the entity to create",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Region"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Region"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Region"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Region"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "201": {
+            "description": "Returns the newly-created item"
+          },
+          "400": {
+            "description": "If the item is null"
+          }
+        }
+      }
+    },
+    "/api/Region/WithoutChildren": {
+      "get": {
+        "tags": [
+          "Region"
+        ],
+        "summary": "Gets all entities but not their children",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Region"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Region"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Region"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Region/{id}": {
+      "get": {
+        "tags": [
+          "Region"
+        ],
+        "summary": "Get Entity by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "description": "",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Region"
+        ],
+        "summary": "Updates an entity partially",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id of entity to patch",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "the patched object",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Operation"
+                },
+                "nullable": true
+              }
+            },
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Operation"
+                },
+                "nullable": true
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Operation"
+                },
+                "nullable": true
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Operation"
+                },
+                "nullable": true
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Region"
+        ],
+        "summary": "Deletes and Entity",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The id of the entity to delete",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "description": "The id of the entity to delete",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Region"
+        ],
+        "summary": "Replaces and existing Entity.\r\nNote this is not for partial updates, for that use PATCH. This is used for replacing the entire entity.\r\nAt the moment it is not possible to replace everything on the existing generic entity with that on the new one and\r\nsometimes we dont want to: we dont want to replace the ID property for example, but we might want to replace\r\ncollections in the orignal item with the new collections in the new item, but this is currently not possible in the\r\nimplemantation. It just replaces simple members.\r\n** So if you want to do it propery, override this method in the controller for the type you want to implementa replacement\r\nroutine for.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id of the entity to update",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "the contents of the entity to change",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Region"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Region"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Region"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Region"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Region/import": {
+      "post": {
+        "tags": [
+          "Region"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Region"
+                },
+                "nullable": true
+              }
+            },
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Region"
+                },
+                "nullable": true
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Region"
+                },
+                "nullable": true
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Region"
+                },
+                "nullable": true
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Risk/GenerateEntityInvestmentsGraphFor/{entityId}": {
+      "get": {
+        "tags": [
+          "Risk"
+        ],
+        "summary": "Generically generates a series of datapoints representing for all or one of the entitiy types.\r\nThis includes the linking of it to other entity types by joining up all the resulting entities by common investments",
+        "parameters": [
+          {
+            "name": "entityId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Risk/GenerateSharedInvestmentsGraphDataForAll": {
+      "get": {
+        "tags": [
+          "Risk"
+        ],
+        "summary": "Generically generates a series of datapoints representing for all or one of the entitiy types.\r\nThis includes the linking of it to other entity types by joining up all the resulting entities by common investments",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Risk": {
+      "get": {
+        "tags": [
+          "Risk"
+        ],
+        "summary": "Get all entities",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/InvestmentRisk"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/InvestmentRisk"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/InvestmentRisk"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Risk"
+        ],
+        "summary": "Create a entity",
+        "requestBody": {
+          "description": "the entity to create",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/InvestmentRisk"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InvestmentRisk"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InvestmentRisk"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/InvestmentRisk"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "201": {
+            "description": "Returns the newly-created item"
+          },
+          "400": {
+            "description": "If the item is null"
+          }
+        }
+      }
+    },
+    "/api/Risk/WithoutChildren": {
+      "get": {
+        "tags": [
+          "Risk"
+        ],
+        "summary": "Gets all entities but not their children",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/InvestmentRisk"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/InvestmentRisk"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/InvestmentRisk"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Risk/{id}": {
+      "get": {
+        "tags": [
+          "Risk"
+        ],
+        "summary": "Get Entity by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "description": "",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Risk"
+        ],
+        "summary": "Updates an entity partially",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id of entity to patch",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "the patched object",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Operation"
+                },
+                "nullable": true
+              }
+            },
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Operation"
+                },
+                "nullable": true
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Operation"
+                },
+                "nullable": true
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Operation"
+                },
+                "nullable": true
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Risk"
+        ],
+        "summary": "Deletes and Entity",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The id of the entity to delete",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "description": "The id of the entity to delete",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Risk"
+        ],
+        "summary": "Replaces and existing Entity.\r\nNote this is not for partial updates, for that use PATCH. This is used for replacing the entire entity.\r\nAt the moment it is not possible to replace everything on the existing generic entity with that on the new one and\r\nsometimes we dont want to: we dont want to replace the ID property for example, but we might want to replace\r\ncollections in the orignal item with the new collections in the new item, but this is currently not possible in the\r\nimplemantation. It just replaces simple members.\r\n** So if you want to do it propery, override this method in the controller for the type you want to implementa replacement\r\nroutine for.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id of the entity to update",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "the contents of the entity to change",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/InvestmentRisk"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InvestmentRisk"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InvestmentRisk"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/InvestmentRisk"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Risk/import": {
+      "post": {
+        "tags": [
+          "Risk"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/InvestmentRisk"
+                },
+                "nullable": true
+              }
+            },
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/InvestmentRisk"
+                },
+                "nullable": true
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/InvestmentRisk"
+                },
+                "nullable": true
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/InvestmentRisk"
+                },
+                "nullable": true
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Signup": {
+      "post": {
+        "tags": [
+          "Signup"
+        ],
+        "summary": "Creates a new user",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SignupDetails"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SignupDetails"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SignupDetails"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SignupDetails"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Token": {
+      "post": {
+        "tags": [
+          "Token"
+        ],
+        "summary": "Creates a token once it validates the login details",
+        "requestBody": {
+          "description": "login details",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserLoginInfo"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserLoginInfo"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserLoginInfo"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserLoginInfo"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TokenResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Transaction/GenerateEntityInvestmentsGraphFor/{entityId}": {
+      "get": {
+        "tags": [
+          "Transaction"
+        ],
+        "summary": "Generically generates a series of datapoints representing for all or one of the entitiy types.\r\nThis includes the linking of it to other entity types by joining up all the resulting entities by common investments",
+        "parameters": [
+          {
+            "name": "entityId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Transaction/GenerateSharedInvestmentsGraphDataForAll": {
+      "get": {
+        "tags": [
+          "Transaction"
+        ],
+        "summary": "Generically generates a series of datapoints representing for all or one of the entitiy types.\r\nThis includes the linking of it to other entity types by joining up all the resulting entities by common investments",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Transaction": {
+      "get": {
+        "tags": [
+          "Transaction"
+        ],
+        "summary": "Get all entities",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/InvestmentTransaction"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/InvestmentTransaction"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/InvestmentTransaction"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Transaction"
+        ],
+        "summary": "Create a entity",
+        "requestBody": {
+          "description": "the entity to create",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/InvestmentTransaction"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InvestmentTransaction"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InvestmentTransaction"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/InvestmentTransaction"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "201": {
+            "description": "Returns the newly-created item"
+          },
+          "400": {
+            "description": "If the item is null"
+          }
+        }
+      }
+    },
+    "/api/Transaction/WithoutChildren": {
+      "get": {
+        "tags": [
+          "Transaction"
+        ],
+        "summary": "Gets all entities but not their children",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/InvestmentTransaction"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/InvestmentTransaction"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/InvestmentTransaction"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Transaction/{id}": {
+      "get": {
+        "tags": [
+          "Transaction"
+        ],
+        "summary": "Get Entity by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "description": "",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Transaction"
+        ],
+        "summary": "Updates an entity partially",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id of entity to patch",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "the patched object",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Operation"
+                },
+                "nullable": true
+              }
+            },
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Operation"
+                },
+                "nullable": true
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Operation"
+                },
+                "nullable": true
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Operation"
+                },
+                "nullable": true
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Transaction"
+        ],
+        "summary": "Deletes and Entity",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The id of the entity to delete",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "description": "The id of the entity to delete",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Transaction"
+        ],
+        "summary": "Replaces and existing Entity.\r\nNote this is not for partial updates, for that use PATCH. This is used for replacing the entire entity.\r\nAt the moment it is not possible to replace everything on the existing generic entity with that on the new one and\r\nsometimes we dont want to: we dont want to replace the ID property for example, but we might want to replace\r\ncollections in the orignal item with the new collections in the new item, but this is currently not possible in the\r\nimplemantation. It just replaces simple members.\r\n** So if you want to do it propery, override this method in the controller for the type you want to implementa replacement\r\nroutine for.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id of the entity to update",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "the contents of the entity to change",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/InvestmentTransaction"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InvestmentTransaction"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InvestmentTransaction"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/InvestmentTransaction"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Transaction/import": {
+      "post": {
+        "tags": [
+          "Transaction"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/InvestmentTransaction"
+                },
+                "nullable": true
+              }
+            },
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/InvestmentTransaction"
+                },
+                "nullable": true
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/InvestmentTransaction"
+                },
+                "nullable": true
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/InvestmentTransaction"
+                },
+                "nullable": true
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "User": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The primary key",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the entity",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "description": "The description of the entity",
+            "nullable": true
+          },
+          "createdTime": {
+            "type": "string",
+            "description": "When the entity was created",
+            "format": "date-time"
+          },
+          "lastModifiedTime": {
+            "type": "string",
+            "description": "When the entity was last modified",
+            "format": "date-time"
+          },
+          "points": {
+            "type": "integer",
+            "description": "Generic points for this entity",
+            "format": "int64"
+          },
+          "isFlagged": {
+            "type": "boolean",
+            "description": "Generic true/false marker for entity"
+          },
+          "displayName": {
+            "type": "string",
+            "description": "User's display name",
+            "nullable": true
+          },
+          "userName": {
+            "type": "string",
+            "description": "Users displayName",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "description": "Users email",
+            "nullable": true
+          },
+          "password": {
+            "type": "string",
+            "description": "Password",
+            "nullable": true
+          },
+          "timeZone": {
+            "type": "integer",
+            "description": "User's timezone in relation to UTC in which  ie +1 or -4",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents a user"
+      },
+      "EntityType": {
+        "enum": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15
+        ],
+        "type": "integer",
+        "description": "Types of entity",
+        "format": "int32"
+      },
+      "RecordedActivity": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The primary key",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the entity",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "description": "The description of the entity",
+            "nullable": true
+          },
+          "createdTime": {
+            "type": "string",
+            "description": "When the entity was created",
+            "format": "date-time"
+          },
+          "lastModifiedTime": {
+            "type": "string",
+            "description": "When the entity was last modified",
+            "format": "date-time"
+          },
+          "points": {
+            "type": "integer",
+            "description": "Generic points for this entity",
+            "format": "int64"
+          },
+          "isFlagged": {
+            "type": "boolean",
+            "description": "Generic true/false marker for entity"
+          },
+          "user": {
+            "$ref": "#/components/schemas/User"
+          },
+          "tag": {
+            "type": "string",
+            "description": "A way to meta tag for custom info",
+            "nullable": true
+          },
+          "details": {
+            "type": "string",
+            "description": "Details of the activity",
+            "nullable": true
+          },
+          "owningEntityId": {
+            "type": "integer",
+            "description": "The activity target. The entity itself that this activity pertains to",
+            "format": "int32"
+          },
+          "owningEntityType": {
+            "$ref": "#/components/schemas/EntityType"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents an activity that that has been performed and persisted"
+      },
+      "OperationType": {
+        "enum": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "Operation": {
+        "type": "object",
+        "properties": {
+          "operationType": {
+            "$ref": "#/components/schemas/OperationType"
+          },
+          "path": {
+            "type": "string",
+            "nullable": true
+          },
+          "op": {
+            "type": "string",
+            "nullable": true
+          },
+          "from": {
+            "type": "string",
+            "nullable": true
+          },
+          "value": {
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CustomEntityType": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The primary key",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the entity",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "description": "The description of the entity",
+            "nullable": true
+          },
+          "createdTime": {
+            "type": "string",
+            "description": "When the entity was created",
+            "format": "date-time"
+          },
+          "lastModifiedTime": {
+            "type": "string",
+            "description": "When the entity was last modified",
+            "format": "date-time"
+          },
+          "points": {
+            "type": "integer",
+            "description": "Generic points for this entity",
+            "format": "int64"
+          },
+          "isFlagged": {
+            "type": "boolean",
+            "description": "Generic true/false marker for entity"
+          },
+          "dataType": {
+            "$ref": "#/components/schemas/EntityType"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Types of user defined entities"
+      },
+      "InvestmentInfluenceFactor": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The primary key",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the entity",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "description": "The description of the entity",
+            "nullable": true
+          },
+          "createdTime": {
+            "type": "string",
+            "description": "When the entity was created",
+            "format": "date-time"
+          },
+          "lastModifiedTime": {
+            "type": "string",
+            "description": "When the entity was last modified",
+            "format": "date-time"
+          },
+          "points": {
+            "type": "integer",
+            "description": "Generic points for this entity",
+            "format": "int64"
+          },
+          "isFlagged": {
+            "type": "boolean",
+            "description": "Generic true/false marker for entity"
+          },
+          "investmentIds": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "influence": {
+            "type": "string",
+            "description": "Influence",
+            "nullable": true
+          },
+          "investments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InvestmentInfluenceFactor_Investment"
+            },
+            "description": "Investments",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": ""
+      },
+      "InvestmentInfluenceFactor_Investment": {
+        "type": "object",
+        "properties": {
+          "investmentID": {
+            "type": "integer",
+            "description": "",
+            "format": "int32"
+          },
+          "investment": {
+            "$ref": "#/components/schemas/Investment"
+          },
+          "investmentInfluenceFactorID": {
+            "type": "integer",
+            "description": "InvestmentInfluenceFactorID",
+            "format": "int32"
+          },
+          "investmentInfluenceFactor": {
+            "$ref": "#/components/schemas/InvestmentInfluenceFactor"
+          }
+        },
+        "additionalProperties": false,
+        "description": ""
+      },
+      "Region": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The primary key",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the entity",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "description": "The description of the entity",
+            "nullable": true
+          },
+          "createdTime": {
+            "type": "string",
+            "description": "When the entity was created",
+            "format": "date-time"
+          },
+          "lastModifiedTime": {
+            "type": "string",
+            "description": "When the entity was last modified",
+            "format": "date-time"
+          },
+          "points": {
+            "type": "integer",
+            "description": "Generic points for this entity",
+            "format": "int64"
+          },
+          "isFlagged": {
+            "type": "boolean",
+            "description": "Generic true/false marker for entity"
+          },
+          "investmentIds": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "description": "The investment Ids associated with this region",
+            "nullable": true,
+            "readOnly": true
+          },
+          "investments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Region_Investment"
+            },
+            "description": "The actual Investments",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "An Investment region"
+      },
+      "Region_Investment": {
+        "type": "object",
+        "properties": {
+          "investmentID": {
+            "type": "integer",
+            "description": "",
+            "format": "int32"
+          },
+          "investment": {
+            "$ref": "#/components/schemas/Investment"
+          },
+          "regionID": {
+            "type": "integer",
+            "description": "",
+            "format": "int32"
+          },
+          "region": {
+            "$ref": "#/components/schemas/Region"
+          }
+        },
+        "additionalProperties": false,
+        "description": ""
+      },
+      "RiskType": {
+        "enum": [
+          0,
+          1
+        ],
+        "type": "integer",
+        "description": "",
+        "format": "int32"
+      },
+      "InvestmentRisk": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The primary key",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the entity",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "description": "The description of the entity",
+            "nullable": true
+          },
+          "createdTime": {
+            "type": "string",
+            "description": "When the entity was created",
+            "format": "date-time"
+          },
+          "lastModifiedTime": {
+            "type": "string",
+            "description": "When the entity was last modified",
+            "format": "date-time"
+          },
+          "points": {
+            "type": "integer",
+            "description": "Generic points for this entity",
+            "format": "int64"
+          },
+          "isFlagged": {
+            "type": "boolean",
+            "description": "Generic true/false marker for entity"
+          },
+          "investmentIds": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "type": {
+            "$ref": "#/components/schemas/RiskType"
+          },
+          "investments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InvestmentRisk_Investment"
+            },
+            "description": "Investments",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Investment Risk"
+      },
+      "InvestmentRisk_Investment": {
+        "type": "object",
+        "properties": {
+          "investmentID": {
+            "type": "integer",
+            "description": "",
+            "format": "int32"
+          },
+          "investment": {
+            "$ref": "#/components/schemas/Investment"
+          },
+          "investmentRiskID": {
+            "type": "integer",
+            "description": "",
+            "format": "int32"
+          },
+          "investmentRisk": {
+            "$ref": "#/components/schemas/InvestmentRisk"
+          }
+        },
+        "additionalProperties": false,
+        "description": ""
+      },
+      "InvestmentGroup": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The primary key",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the entity",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "description": "The description of the entity",
+            "nullable": true
+          },
+          "createdTime": {
+            "type": "string",
+            "description": "When the entity was created",
+            "format": "date-time"
+          },
+          "lastModifiedTime": {
+            "type": "string",
+            "description": "When the entity was last modified",
+            "format": "date-time"
+          },
+          "points": {
+            "type": "integer",
+            "description": "Generic points for this entity",
+            "format": "int64"
+          },
+          "isFlagged": {
+            "type": "boolean",
+            "description": "Generic true/false marker for entity"
+          },
+          "investmentIds": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "description": "List of Investments Ids without fetching all Investments",
+            "nullable": true,
+            "readOnly": true
+          },
+          "type": {
+            "type": "string",
+            "description": "Type",
+            "nullable": true
+          },
+          "investments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InvestmentGroup_Investment"
+            },
+            "description": "Investments",
+            "nullable": true
+          },
+          "parent": {
+            "$ref": "#/components/schemas/InvestmentGroup"
+          },
+          "children": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InvestmentGroup"
+            },
+            "description": "Child Investment Groups",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Investment group"
+      },
+      "InvestmentGroup_Investment": {
+        "type": "object",
+        "properties": {
+          "investmentID": {
+            "type": "integer",
+            "description": "",
+            "format": "int32"
+          },
+          "investment": {
+            "$ref": "#/components/schemas/Investment"
+          },
+          "investmentGroupID": {
+            "type": "integer",
+            "description": "",
+            "format": "int32"
+          },
+          "investmentGroup": {
+            "$ref": "#/components/schemas/InvestmentGroup"
+          }
+        },
+        "additionalProperties": false,
+        "description": ""
+      },
+      "InvestmentTransaction": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The primary key",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the entity",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "description": "The description of the entity",
+            "nullable": true
+          },
+          "createdTime": {
+            "type": "string",
+            "description": "When the entity was created",
+            "format": "date-time"
+          },
+          "lastModifiedTime": {
+            "type": "string",
+            "description": "When the entity was last modified",
+            "format": "date-time"
+          },
+          "points": {
+            "type": "integer",
+            "description": "Generic points for this entity",
+            "format": "int64"
+          },
+          "isFlagged": {
+            "type": "boolean",
+            "description": "Generic true/false marker for entity"
+          },
+          "investmentId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "numUnits": {
+            "type": "integer",
+            "description": "The number of units bought",
+            "format": "int32"
+          },
+          "pricePerUnit": {
+            "type": "number",
+            "description": "The price per unit",
+            "format": "float"
+          },
+          "currency": {
+            "type": "string",
+            "description": "ISO code that represents the currency",
+            "nullable": true
+          },
+          "transactionType": {
+            "type": "string",
+            "description": "Eg Buy, Sell",
+            "nullable": true
+          },
+          "transactionDate": {
+            "type": "string",
+            "description": "Time that the transaction was made",
+            "format": "date-time"
+          },
+          "investmentIds": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "description": "Refers to a list of investments",
+            "nullable": true,
+            "readOnly": true
+          },
+          "commission": {
+            "type": "number",
+            "description": "Additional cost of this transaction",
+            "format": "currency"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents a transaction on an investment"
+      },
+      "Investment": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The primary key",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the entity",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "description": "The description of the entity",
+            "nullable": true
+          },
+          "createdTime": {
+            "type": "string",
+            "description": "When the entity was created",
+            "format": "date-time"
+          },
+          "lastModifiedTime": {
+            "type": "string",
+            "description": "When the entity was last modified",
+            "format": "date-time"
+          },
+          "points": {
+            "type": "integer",
+            "description": "Generic points for this entity",
+            "format": "int64"
+          },
+          "isFlagged": {
+            "type": "boolean",
+            "description": "Generic true/false marker for entity"
+          },
+          "symbol": {
+            "type": "string",
+            "description": "Symbol",
+            "nullable": true
+          },
+          "valueProposition": {
+            "type": "string",
+            "description": "Value proposition",
+            "nullable": true
+          },
+          "desirabilityStatement": {
+            "type": "string",
+            "description": "Desirability statement",
+            "nullable": true
+          },
+          "initialInvestment": {
+            "type": "number",
+            "description": "Initial investment",
+            "format": "currency"
+          },
+          "value": {
+            "type": "number",
+            "description": "Investment value",
+            "format": "currency"
+          },
+          "factors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InvestmentInfluenceFactor_Investment"
+            },
+            "description": "Factors",
+            "nullable": true
+          },
+          "regions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Region_Investment"
+            },
+            "description": "Regions",
+            "nullable": true
+          },
+          "risks": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InvestmentRisk_Investment"
+            },
+            "description": "Risks",
+            "nullable": true
+          },
+          "groups": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InvestmentGroup_Investment"
+            },
+            "description": "Groups",
+            "nullable": true
+          },
+          "customEntities": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CustomEntity_Investment"
+            },
+            "description": "Associated custom entities",
+            "nullable": true
+          },
+          "transactions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InvestmentTransaction"
+            },
+            "description": "List of transactions",
+            "nullable": true
+          },
+          "investmentIds": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "nullable": true
+          },
+          "currency": {
+            "type": "number",
+            "description": "Currency of the portfolio",
+            "format": "currency",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents an investment"
+      },
+      "CustomEntity_Investment": {
+        "type": "object",
+        "properties": {
+          "investmentID": {
+            "type": "integer",
+            "description": "",
+            "format": "int32"
+          },
+          "investment": {
+            "$ref": "#/components/schemas/Investment"
+          },
+          "customEntityId": {
+            "type": "integer",
+            "description": "CustomEntityId",
+            "format": "int32"
+          },
+          "customEntity": {
+            "$ref": "#/components/schemas/CustomEntity"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Custom Entities can link to investments and vice reversa"
+      },
+      "CustomEntity": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The primary key",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the entity",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "description": "The description of the entity",
+            "nullable": true
+          },
+          "createdTime": {
+            "type": "string",
+            "description": "When the entity was created",
+            "format": "date-time"
+          },
+          "lastModifiedTime": {
+            "type": "string",
+            "description": "When the entity was last modified",
+            "format": "date-time"
+          },
+          "points": {
+            "type": "integer",
+            "description": "Generic points for this entity",
+            "format": "int64"
+          },
+          "isFlagged": {
+            "type": "boolean",
+            "description": "Generic true/false marker for entity"
+          },
+          "customEntityType": {
+            "$ref": "#/components/schemas/CustomEntityType"
+          },
+          "owningCustomEntity": {
+            "$ref": "#/components/schemas/CustomEntity"
+          },
+          "associations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CustomEntity"
+            },
+            "description": "Entities that relate to this entity",
+            "nullable": true
+          },
+          "owningEntityId": {
+            "type": "integer",
+            "description": "This allows this custom entity to be owned by a non-custom entity",
+            "format": "int32"
+          },
+          "owningEntityType": {
+            "$ref": "#/components/schemas/EntityType"
+          },
+          "investments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CustomEntity_Investment"
+            },
+            "description": "We have investments",
+            "nullable": true
+          },
+          "investmentIds": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "description": "Convienient way to expose investments ids so we can get them generically using IHaveInvestments",
+            "nullable": true,
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents an custom entity that the user can define"
+      },
+      "InvestmentNote": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The primary key",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the entity",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "description": "The description of the entity",
+            "nullable": true
+          },
+          "createdTime": {
+            "type": "string",
+            "description": "When the entity was created",
+            "format": "date-time"
+          },
+          "lastModifiedTime": {
+            "type": "string",
+            "description": "When the entity was last modified",
+            "format": "date-time"
+          },
+          "points": {
+            "type": "integer",
+            "description": "Generic points for this entity",
+            "format": "int64"
+          },
+          "isFlagged": {
+            "type": "boolean",
+            "description": "Generic true/false marker for entity"
+          },
+          "investmentIds": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "owningEntityId": {
+            "type": "integer",
+            "description": "Owning id",
+            "format": "int32"
+          },
+          "owningEntityType": {
+            "$ref": "#/components/schemas/EntityType"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Simple text note for an entity"
+      },
+      "SignupDetails": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "description": "user name",
+            "nullable": true
+          },
+          "password": {
+            "type": "string",
+            "description": "Token",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "description": "Users Email",
+            "nullable": true
+          },
+          "timezone": {
+            "type": "integer",
+            "description": "User's timezone",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Signup details for a new user"
+      },
+      "UserLoginInfo": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "description": "user name",
+            "nullable": true
+          },
+          "password": {
+            "type": "string",
+            "description": "Token",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents User login information"
+      },
+      "TokenResponse": {
+        "type": "object",
+        "properties": {
+          "token": {
+            "type": "string",
+            "description": "The actual token string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "securitySchemes": {
+      "Bearer": {
+        "type": "http",
+        "description": "JWT Authorization header using the Bearer scheme.",
+        "scheme": "bearer"
+      }
+    }
+  },
+  "security": [
+    {
+      "Bearer": [ ]
+    }
+  ]
+}
