@@ -6,8 +6,9 @@
         xmlns:local="clr-namespace:InvestmentTrackerUI"
         mc:Ignorable="d"
         xmlns:views="clr-namespace:InvestmentTrackerUI.Views"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800"
+        >
     <Grid>
-        <views:ListAllInvestments/>
+        <views:ListAllInvestmentsControl/>
     </Grid>
 </Window>

@@ -18,9 +18,9 @@ namespace InvestmentTrackerUI.Views
     /// <summary>
     /// Interaction logic for ListAllInvestments.xaml
     /// </summary>
-    public partial class ListAllInvestments : UserControl
+    public partial class ListAllInvestmentsControl : UserControl
     {
-        public ListAllInvestments()
+        public ListAllInvestmentsControl()
         {
             InitializeComponent();
         }

@@ -10,7 +10,7 @@ namespace InvestmentTrackerApiClient
     {
         public string Token {get;set;}
 
-        partial void PrepareRequest(System.Net.Http.HttpClient client, System.Net.Http.HttpRequestMessage request, string url)
+        partial void PrepareRequest(HttpClient client, HttpRequestMessage request, string url)
         { 
             request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", Token);
         }

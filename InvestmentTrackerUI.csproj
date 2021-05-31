@@ -62,12 +62,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Converters\InvestmentToString.cs" />
     <Compile Include="InvestmentTrackerApiClient.cs" />
     <Compile Include="ModelViews\InvestmentsModelView.cs" />
     <Compile Include="ModelViews\ViewModelBase.cs" />
     <Compile Include="NSwagClient.cs" />
-    <Compile Include="Views\ListAllInvestments.xaml.cs">
-      <DependentUpon>ListAllInvestments.xaml</DependentUpon>
+    <Compile Include="Views\ListAllInvestmentsControl.xaml.cs">
+      <DependentUpon>ListAllInvestmentsControl.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -81,7 +82,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Views\ListAllInvestments.xaml">
+    <Page Include="Views\ListAllInvestmentsControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -112,6 +113,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Interfaces\" />
+    <Folder Include="Mocks\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

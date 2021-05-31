@@ -1,0 +1,64 @@
+﻿<UserControl x:Class="InvestmentTrackerUI.Views.ListAllInvestmentsControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:modelviews="clr-namespace:InvestmentTrackerUI.ModelViews"
+             x:Name="TheUserControl"
+             d:DesignWidth="500"
+             d:DesignHeight="400">
+    <UserControl.Resources>
+        <modelviews:MockInvestmentsModelView x:Key="MockInvestmentsModelView" />
+        <modelviews:InvestmentsModelView x:Key="ModelView" />
+        <Style x:Key="InvestmentPropertyStyle"
+               TargetType="TextBlock">
+            <Setter Property="Padding"
+                    Value="0,0,5,0" />
+            <Setter Property="FontWeight"
+                    Value="Bold" />
+        </Style>
+        <Style x:Key="ValueTextBox"
+               TargetType="TextBlock">
+            <Setter Property="Padding"
+                    Value="0,0,5,0" />
+        </Style>
+        <Style x:Key="InvestmentTextStyle"
+               TargetType="TextBlock">
+            <Setter Property="Foreground"
+                    Value="Navy" />
+            <Setter Property="FontSize"
+                    Value="16" />
+            <Setter Property="Padding"
+                    Value="0, 0, 5, 0" />
+        </Style>
+        <Style x:Key="DescriptionStyle"
+               TargetType="TextBlock">
+            <Setter Property="TextWrapping"
+                    Value="Wrap" />
+            <!--<Setter Property="MaxWidth" Value="400"/>-->
+        </Style>
+    </UserControl.Resources>
+    
+
+<ScrollViewer DataContext="{StaticResource ModelView}"
+              d:DataContext="{StaticResource MockInvestmentsModelView}">
+            <ListView  Name="TheListBox"
+                       ItemsSource="{Binding Investments}"
+                       HorizontalContentAlignment="Stretch">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Text="{Binding Name}"
+                                       Style="{StaticResource InvestmentTextStyle}" />
+                            <TextBlock Text="{Binding Description}"
+                                       Style="{StaticResource DescriptionStyle}"
+                                       Width="{Binding ElementName=TheUserControl, Path=ActualWidth}"/>
+
+                    </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+       </ScrollViewer>
+ 
+</UserControl>
