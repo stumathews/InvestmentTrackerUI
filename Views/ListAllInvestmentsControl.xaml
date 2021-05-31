@@ -3,14 +3,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d"
              xmlns:modelviews="clr-namespace:InvestmentTrackerUI.ModelViews"
+             xmlns:converters="clr-namespace:InvestmentTrackerUI.Converters"
+             mc:Ignorable="d"
              x:Name="TheUserControl"
              d:DesignWidth="500"
              d:DesignHeight="400">
     <UserControl.Resources>
         <modelviews:MockInvestmentsModelView x:Key="MockInvestmentsModelView" />
         <modelviews:InvestmentsModelView x:Key="ModelView" />
+        <converters:PercentageOfValueConverter x:Key="PercentageOfValueConverter"/>
         <Style x:Key="InvestmentPropertyStyle"
                TargetType="TextBlock">
             <Setter Property="Padding"
@@ -35,30 +37,24 @@
         <Style x:Key="DescriptionStyle"
                TargetType="TextBlock">
             <Setter Property="TextWrapping"
-                    Value="Wrap" />
-            <!--<Setter Property="MaxWidth" Value="400"/>-->
+                    Value="WrapWithOverflow" />
         </Style>
-    </UserControl.Resources>
-    
+    </UserControl.Resources> 
+    <ListView  Name="TheListBox"
+               DataContext="{StaticResource ModelView}"
+               d:DataContext="{StaticResource MockInvestmentsModelView}"
+               ItemsSource="{Binding Investments}">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <StackPanel Orientation="Vertical" >
+                    <TextBlock Text="{Binding Name}"
+                                Style="{StaticResource InvestmentTextStyle}" />
+                    <TextBlock Text="{Binding Description}"
+                                Style="{StaticResource DescriptionStyle}"
+                                Width="{Binding ElementName=TheListBox, Path=ActualWidth, Converter={StaticResource PercentageOfValueConverter}, ConverterParameter=0.95}"/>
 
-<ScrollViewer DataContext="{StaticResource ModelView}"
-              d:DataContext="{StaticResource MockInvestmentsModelView}">
-            <ListView  Name="TheListBox"
-                       ItemsSource="{Binding Investments}"
-                       HorizontalContentAlignment="Stretch">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Vertical">
-                            <TextBlock Text="{Binding Name}"
-                                       Style="{StaticResource InvestmentTextStyle}" />
-                            <TextBlock Text="{Binding Description}"
-                                       Style="{StaticResource DescriptionStyle}"
-                                       Width="{Binding ElementName=TheUserControl, Path=ActualWidth}"/>
-
-                    </StackPanel>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-       </ScrollViewer>
- 
+            </StackPanel>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView> 
 </UserControl>

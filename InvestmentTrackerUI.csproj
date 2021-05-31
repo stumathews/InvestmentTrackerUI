@@ -63,6 +63,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Converters\InvestmentToString.cs" />
+    <Compile Include="Converters\PercentageOfValueConverter.cs" />
     <Compile Include="InvestmentTrackerApiClient.cs" />
     <Compile Include="ModelViews\InvestmentsModelView.cs" />
     <Compile Include="ModelViews\ViewModelBase.cs" />
